@@ -1,65 +1,66 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import WhatWeOfferModal from "../components/WhatWeOfferModal";
+import OrderModal from "../components/OrderModal";
+import BenefitModal from "../components/BenefitModal";
+import "antd/dist/antd.css";
+import ContactUs from "../components/ContactUs";
 
 export default function Home() {
+  const [whatVisible, setWhat] = useState(false);
+  const [orderVisible, setOrder] = useState(false);
+  const [benifitsVisible, setBenifits] = useState(false);
+  const [contactVisible, setContact] = useState(false);
+  const whatClose = () => {
+    setWhat(false);
+  };
+
+  const orderClose = () => {
+    setOrder(false);
+  };
+  const benifitsClose = () => {
+    setBenifits(false);
+  };
+  const contactClose = () => {
+    setContact(false);
+  };
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <h1 className={styles.title}>Saffron</h1>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <div className={styles.card} onClick={() => setBenifits(true)}>
+            <h2>Benefits</h2>
+          </div>
+          <div className={styles.card} onClick={() => setWhat(true)}>
+            <h2>What We Offer</h2>
+          </div>
+          <div className={styles.card} onClick={() => setOrder(true)}>
+            <h2>Order</h2>
+          </div>
+          <div className={styles.card} onClick={() => setContact(true)}>
+            <h2>Contact Us Directly</h2>
+          </div>
         </div>
       </main>
-
+      <WhatWeOfferModal onClose={whatClose} show={whatVisible} />
+      <ContactUs onClose={contactClose} show={contactVisible} />
+      <BenefitModal onClose={benifitsClose} show={benifitsVisible} />
+      <OrderModal onClose={orderClose} show={orderVisible} />
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
+        <p>Made By Amel Ul Mulk : </p>
+        <p>03478204948</p>
       </footer>
     </div>
-  )
+  );
 }
